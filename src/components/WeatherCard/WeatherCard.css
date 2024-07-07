@@ -1,20 +1,25 @@
-.weather__card {
+.weather-card {
+  display: flex;
   position: relative;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.weather-card__temp {
+  font-family: Cabinet Grotesk, sans-serif;
+  color: #fff;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 550;
+  text-align: left;
+  margin: 0;
+  position: absolute;
+  top: 20px;
+  left: 16px;
 }
 
-.weather__card-img {
-  max-width: 1360px;
-  height: 80px;
+.weather-card__image {
   object-fit: cover;
   object-position: right top;
   width: 100%;
-  display: flex;
-  border-radius: 12px;
-}
-
-.weather__card-text {
-  color: white;
-  font-size: 36px;
-  position: absolute;
-  margin: 20px 16px;
 }

@@ -1,11 +1,15 @@
-import sunny from "../../assets/sunny.png";
 import "./WeatherCard.css";
+import rectangle from "../../assets/rectangle.png";
 
-function WeatherCard() {
+function WeatherCard({ weatherData }) {
   return (
-    <section className="weather__card">
-      <h1 className="weather__card-text">75 &deg; F</h1>
-      <img className="weather__card-img" src={sunny} alt="sunny" />
+    <section className="weather-card">
+      <p className="weather-card__temp"> {weatherData.temp.F} &deg; F</p>
+      <img
+        src={rectangle}
+        alt="weather background image"
+        className="weather-card__image"
+      />
     </section>
   );
 }

@@ -1,0 +1,23 @@
+.modal__image {
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+}
+
+.modal__content {
+  padding: 1px 1px 25px;
+}
+
+.modal__caption {
+  font-family: Cabinet Grotesk, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 550;
+}
+
+.modal__footer {
+  font-family: Cabinet Grotesk, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 550;
+  padding-left: 30px;
+}
