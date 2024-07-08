@@ -28,7 +28,7 @@
 }
 
 .modal__title {
-  margin: 0 0 30px;
+  margin: 30px 30px 30px;
   font-family: Cabinet Grotesk, sans-serif;
   font-size: 16px;
   font-weight: 700;
@@ -39,10 +39,8 @@
 .modal__content {
   position: relative;
   background-color: #fff;
-  padding: 25px 25px 36px;
   max-width: 496px;
   min-height: 436px;
-  box-sizing: border-box;
   width: 100%;
   font-family: Cabinet Grotesk, sans-serif;
   font-size: 16px;
@@ -59,11 +57,12 @@
   font-size: 16px;
   line-height: 20px;
   row-gap: 28px;
+  margin: 30px 30px 30px;
 }
 
 .modal__submit {
   position: absolute;
-  top: 330px;
+  top: 340px;
   left: 25px;
   background-color: #0000004d;
   color: #fff;
