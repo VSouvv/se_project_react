@@ -1,0 +1,8 @@
+.profile {
+  display: flex;
+  gap: 75px;
+  font-family: Cabinet Grotesk, sans-serif;
+  font-size: 20px;
+  font-weight: 550;
+  line-height: 24.8px;
+}

@@ -7,11 +7,6 @@ const ToggleSwitch = () => {
     CurrentTemperatureUnitContext
   );
 
-  const handleChange = (e) => {
-    if (currentTemperatureUnit === "C") handleToggleSwitchChange("F");
-    if (currentTemperatureUnit === "F") handleToggleSwitchChange("C");
-  };
-
   return (
     <label className="switch">
       <input

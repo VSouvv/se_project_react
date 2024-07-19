@@ -1,0 +1,11 @@
+.clothes-section__items {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.clothes-btn {
+  height: 25px;
+  color: #00000099;
+  border: none;
+}
