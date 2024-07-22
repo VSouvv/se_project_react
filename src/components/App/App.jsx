@@ -10,7 +10,12 @@ import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import { getItems, postItems } from "../../utils/api";
+import {
+  getItems,
+  postItems,
+  deleteItem,
+  checkResponse,
+} from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -46,6 +51,19 @@ function App() {
     postItems(item.name, item.imageUrl, item.weather).then((newCard) => {
       setClothingItems([newCard, ...clothingItems]);
     });
+  };
+
+  const handleDeleteItem = (item) => {
+    console.log(item);
+    deleteItem(item)
+      .then((res) => {
+        const newClothingItems = clothingItems.filter(
+          (cardItem) => cardItem._id !== item._id
+        );
+        setClothingItems(newClothingItems);
+        setActiveModal("");
+      })
+      .catch((e) => console.error(e));
   };
 
   useEffect(() => {
@@ -105,6 +123,7 @@ function App() {
           activeModal={activeModal}
           onClose={closeActiveModal}
           card={selectedCard}
+          handleDeleteItem={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
