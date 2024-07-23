@@ -10,12 +10,7 @@ import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import {
-  getItems,
-  postItems,
-  deleteItem,
-  checkResponse,
-} from "../../utils/api";
+import { getItems, postItems, deleteItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -48,22 +43,24 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
-    postItems(item.name, item.imageUrl, item.weather).then((newCard) => {
-      setClothingItems([newCard, ...clothingItems]);
-    });
+    postItems(item.name, item.imageUrl, item.weather)
+      .then((newCard) => {
+        setClothingItems([newCard, ...clothingItems]);
+      })
+      .catch((err) => console.error("Error submitting:", err));
+    closeActiveModal();
   };
 
   const handleDeleteItem = (item) => {
-    console.log(item);
     deleteItem(item)
       .then((res) => {
         const newClothingItems = clothingItems.filter(
           (cardItem) => cardItem._id !== item._id
         );
         setClothingItems(newClothingItems);
-        setActiveModal("");
       })
-      .catch((e) => console.error(e));
+      .catch((err) => console.error("Error deleting item:", err));
+    closeActiveModal("");
   };
 
   useEffect(() => {
@@ -72,7 +69,7 @@ function App() {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
-      .catch(console.error);
+      .catch((err) => console.error("Error getting weather:", err));
   }, []);
 
   useEffect(() => {
@@ -107,6 +104,7 @@ function App() {
                 <Profile
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             />

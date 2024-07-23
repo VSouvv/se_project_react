@@ -1,6 +1,7 @@
 .card {
   position: relative;
-  width: 323px;
+  max-width: 323px;
+  max-height: 323px;
   display: flex;
   justify-content: center;
   font-family: Cabinet Grotesk, sans-serif;
