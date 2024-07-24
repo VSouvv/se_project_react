@@ -46,9 +46,9 @@ function App() {
     postItems(item.name, item.imageUrl, item.weather)
       .then((newCard) => {
         setClothingItems([newCard, ...clothingItems]);
+        closeActiveModal();
       })
       .catch((err) => console.error("Error submitting:", err));
-    closeActiveModal();
   };
 
   const handleDeleteItem = (item) => {
@@ -58,9 +58,9 @@ function App() {
           (cardItem) => cardItem._id !== item._id
         );
         setClothingItems(newClothingItems);
+        closeActiveModal();
       })
       .catch((err) => console.error("Error deleting item:", err));
-    closeActiveModal("");
   };
 
   useEffect(() => {
