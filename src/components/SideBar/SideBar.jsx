@@ -35,4 +35,4 @@ const SideBar = ({ onEditProfileModal, onSignout }) => {
   );
 };
 
-export default SideBar;
+export default Sidebar;
