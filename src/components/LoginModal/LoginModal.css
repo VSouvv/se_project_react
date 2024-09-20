@@ -1,0 +1,22 @@
+.login__button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.login__login-link {
+  border: none;
+  width: 77px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
