@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import avatar from "../../assets/avatar.png";
 import "./Sidebar.css";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
+
 const SideBar = ({ onEditProfileModal, onSignout }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -35,4 +36,4 @@ const SideBar = ({ onEditProfileModal, onSignout }) => {
   );
 };
 
-export default Sidebar;
+export default SideBar;
