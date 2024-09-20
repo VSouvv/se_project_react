@@ -1,50 +1,55 @@
 .sidebar {
-  display: flex;
+  gap: 15px;
   flex-direction: column;
-  align-items: baseline;
-  gap: 16px;
-}
-
-.sidebar__profile {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 8px;
 }
 
-.sidebar__avatar {
+.side-bar__avatar {
   height: 56px;
   width: 56px;
   border-radius: 50%;
-  object-fit: cover;
 }
 
-.sidebar__username {
+.side-bar__name {
+  width: 157px;
+  font-family: "Cabinet Grotesk";
   font-size: 20px;
   font-weight: 700;
   line-height: 24.8px;
-}
-
-.sidebar__edit-profile {
-  line-height: 24.8px;
-  border: none;
-  background-color: #f3f3f3;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 700;
-  padding: 0;
-  width: 180px;
   text-align: left;
+  padding: 0;
+  margin: 0;
 }
 
-.sidebar__logout {
-  line-height: 24.8px;
-  border: none;
-  background-color: #f3f3f3;
-  cursor: pointer;
-  font-size: 20px;
+.sidebar__options {
+  width: 157px;
+  font-size: 16px;
   font-weight: 700;
-  padding: 0;
-  width: 180px;
+  line-height: 24.8px;
   text-align: left;
+  font-family: "Cabinet Grotesk", sans-serif;
+  flex-direction: column;
+  display: flex;
+}
+
+.side-bar__edit-profile {
+  padding: 0%;
+  margin: 0;
+  border: none;
+  background-color: none;
+  display: flex;
+}
+
+.side-bar__log-out {
+  padding: 0%;
+  margin: 0;
+  border: none;
+  background-color: none;
+  display: flex;
+}
+
+.side-bar__profile {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }

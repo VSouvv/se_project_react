@@ -1,15 +1,14 @@
 .switch {
   display: flex;
   position: relative;
-  left: 570px;
-  top: 13px;
 }
 
 .switch__box {
   border-radius: 25px;
   border: 2px solid black;
-  width: 50px;
+  width: 55px;
   height: 30px;
+  outline: none;
   appearance: none;
 }
 
@@ -24,30 +23,29 @@
   position: absolute;
 }
 
-.switch__slider-F {
-  top: 0px;
-  left: 2px;
-}
-
-.switch__slider-C {
-  top: 0px;
-  left: 20px;
-}
-
 .switch__active {
+  color: white;
   font-size: 16px;
 }
 
 .switch__temp-F {
   position: absolute;
-  top: -12px;
-  left: 9px;
-  color: #fff;
+  top: -8px;
+  left: 35px;
 }
 
 .switch__temp-C {
   position: absolute;
-  top: -12px;
-  left: 30px;
-  color: #fff;
+  top: -8px;
+  left: 10px;
+}
+
+.switch__slider-F {
+  top: 0px;
+  left: 23px;
+}
+
+.switch__slider-C {
+  top: 0px;
+  left: 2px;
 }

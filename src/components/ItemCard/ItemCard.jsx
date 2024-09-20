@@ -1,39 +1,29 @@
-import "./ItemCard.css";
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import "./ItemCard.css";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 
-function ItemCard({ item, onCardClick, onCardLike }) {
-  const currentUser = useContext(CurrentUserContext);
-
-  const isLoggedIn = !!currentUser._id;
-
-  const isLiked = item.likes.some((id) => id === currentUser._id);
-  const itemLikeButtonClassName = `card__like-button ${
-    isLiked ? "card__like-button_active" : ""
-  }`;
-  console.log(isLiked);
-
-  const handleLike = () => {
-    onCardLike({ id: item._id, isLiked: isLiked });
-  };
-
-  const handleCardClick = () => {
-    onCardClick(item);
-  };
-
+function ItemCard({ item, onCardClick, onItemLike }) {
+  const { currentUser, isAuthenticated } = useContext(CurrentUserContext);
+  const isLiked = item.likes.some((userId) => {
+    return currentUser?._id === userId;
+  });
   return (
     <li className="card">
-      <div className="card__info">
-        <h2 className="card__name">{item.name}</h2>
-        {isLoggedIn && (
+      <div className="card__title-container">
+        <h2 className="card__name">{item.name} </h2>
+        {isAuthenticated && (
           <button
-            className={itemLikeButtonClassName}
-            onClick={handleLike}
+            className={`card__like-button ${
+              isLiked ? "card__like-button_active" : ""
+            }`}
+            onClick={() => onItemLike({ itemId: item._id, isLiked: isLiked })}
           ></button>
         )}
       </div>
       <img
-        onClick={handleCardClick}
+        onClick={() => {
+          onCardClick(item);
+        }}
         className="card__image"
         src={item.imageUrl}
         alt={item.name}

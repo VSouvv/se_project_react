@@ -1,43 +1,32 @@
 import ItemCard from "../ItemCard/ItemCard";
+import WeatherCard from "../WeatherCard/WeatherCard";
 import "./ClothesSection.css";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { useContext } from "react";
 
 function ClothesSection({
-  handleCardClick,
-  handleAddClick,
+  onCardClick,
+  onAddButtonClick,
   clothingItems,
-  onCardLike,
+  onItemLike,
 }) {
-  const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser);
-  console.log(clothingItems);
-
-  const userItems = clothingItems.filter(
-    (item) => item.owner === currentUser._id
-  );
-
   return (
     <div className="clothes-section">
-      <div className="clothes-section__header">
-        <p>Your items</p>
-        <button className="clothes-section__button" onClick={handleAddClick}>
-          + Add new
+      <div className="clothes-header">
+        <p className="clothes-items">Your Items</p>
+        <button onClick={onAddButtonClick} className="clothes-button">
+          + Add New
         </button>
       </div>
-      <ul className="cards__list">
-        {userItems.length > 0 ? (
-          userItems.map((item) => (
+      <ul className="clothes-section__list">
+        {clothingItems.map((item) => {
+          return (
             <ItemCard
               key={item._id}
               item={item}
-              onCardClick={handleCardClick}
-              onCardLike={onCardLike}
+              onCardClick={onCardClick}
+              onItemLike={onItemLike}
             />
-          ))
-        ) : (
-          <p>No items found</p>
-        )}
+          );
+        })}
       </ul>
     </div>
   );

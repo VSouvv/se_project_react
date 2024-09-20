@@ -1,74 +1,81 @@
-import { useState, useEffect, useContext } from "react";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import React, { useState, useEffect, useContext } from "react";
 import "./EditProfileModal.css";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 
-export const EditProfileModal = ({ onClose, isOpen, handleEditUser }) => {
-  const currentUser = useContext(CurrentUserContext);
-  const [data, setData] = useState({
-    name: currentUser.name || "",
-    avatar: currentUser.avatar || "",
-  });
+const EditProfileModal = ({ onSubmit, isOpen, onClose, buttonText }) => {
+  // Use context safely
+  const { currentUser } = useContext(CurrentUserContext);
+
+  // Initialize state with safe access to currentUser
+  const [userName, setUserName] = useState(currentUser?.name || "");
+  const [avatar, setAvatarUrl] = useState(currentUser?.avatar || "");
 
   useEffect(() => {
-    if (isOpen) {
-      setData({
-        name: currentUser.name || "",
-        avatar: currentUser.avatar || "",
-      });
+    // Update state when the modal is opened and currentUser is not null
+    if (isOpen && currentUser) {
+      setUserName(currentUser.name || "");
+      setAvatarUrl(currentUser.avatar || "");
     }
   }, [isOpen, currentUser]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const handleNameChange = (event) => {
+    setUserName(event.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(data);
-    handleEditUser(data);
-    onClose();
+  const handleAvatarUrl = (event) => {
+    setAvatarUrl(event.target.value);
   };
+
+  const newUserData = {
+    name: userName,
+    avatar: avatar,
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    onSubmit(newUserData);
+  }
 
   return (
     <ModalWithForm
       title="Change profile data"
+      name="edit-profile"
+      buttonText="submit"
       onClose={onClose}
       onSubmit={handleSubmit}
       isOpen={isOpen}
     >
-      <label htmlFor="name" className="modal__label">
-        Name*{" "}
-        <input
-          type="text"
-          className="modal__input"
-          id="name"
-          required
-          placeholder="Name"
-          name="name"
-          value={data.name}
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="avatar" className="modal__label">
-        Avatar*{" "}
-        <input
-          type="link"
-          className="modal__input"
-          id="avatar"
-          required
-          placeholder="Avatar URL"
-          name="avatar"
-          value={data.avatar}
-          onChange={handleChange}
-        />
-      </label>
-      <button type="submit" className="modal__edit-submit">
-        Save changes
+      <fieldset className="modal__inputs">
+        <label className="modal__label">
+          Name*
+          <input
+            className="modal__input"
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={userName}
+            minLength="1"
+            maxLength="30"
+            onChange={handleNameChange}
+          />
+        </label>
+        <label className="modal__label">
+          Avatar URL*
+          <input
+            className="modal__input"
+            type="url"
+            name="link"
+            placeholder="Avatar URL"
+            value={avatar}
+            minLength="1"
+            maxLength="1000"
+            onChange={handleAvatarUrl}
+          />
+        </label>
+      </fieldset>
+      <button type="submit" className="modal__submit">
+        submit
       </button>
     </ModalWithForm>
   );

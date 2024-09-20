@@ -1,14 +1,12 @@
 import "./Footer.css";
 
-function Footer() {
+export default function Footer() {
   return (
     <footer className="footer">
-      <ul className="footer__content">
-        <li className="footer__content-name">Developed by Vista Souvandy </li>
-        <li className="footer__content-year"> 2024</li>
-      </ul>
+      <p className="footer__developed_by">Developed by Vista Souvandy</p>
+      <div className="footer__user-container">
+        <p className="footer__year">2024</p>
+      </div>
     </footer>
   );
 }
-
-export default Footer;

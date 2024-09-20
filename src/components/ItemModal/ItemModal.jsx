@@ -1,24 +1,11 @@
 import "./ItemModal.css";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { useContext } from "react";
+import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
+import React, { useState } from "react";
 
-function ItemModal({ isOpen, onClose, card, onDelete }) {
-  const handleDeleteCardClick = () => {
-    console.log("Delete button clicked, card ID:", card._id);
-    onDelete(card._id);
-  };
-
-  const currentUser = useContext(CurrentUserContext);
-
-  const isOwn = card.owner === currentUser._id;
-
-  const itemDeleteButtonClassName = `modal__delete-btn ${
-    isOwn ? "modal__delete-btn_visible" : "modal__delete-btn_hidden"
-  }`;
-
+function ItemModal({ activeModal, card, onClose, onClick, isAuthenticated }) {
   return (
-    <div className={`modal ${isOpen && "modal_opened"}`}>
-      <div className="modal__content modal__content_type_image">
+    <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
+      <div className="modal__contents modal__content_type_image">
         <button
           onClick={onClose}
           type="button"
@@ -26,21 +13,15 @@ function ItemModal({ isOpen, onClose, card, onDelete }) {
         ></button>
         <img src={card.imageUrl} alt={card.name} className="modal__image" />
         <div className="modal__footer">
-          <div className="modal__footer-description">
+          <div className="title__box">
             <h2 className="modal__caption">{card.name}</h2>
             <p className="modal__weather">Weather: {card.weather}</p>
           </div>
-          {isOwn ? (
-            <button
-              type="button"
-              className={itemDeleteButtonClassName}
-              onClick={handleDeleteCardClick}
-            >
-              Delete item
+          {isAuthenticated ? (
+            <button type="button" onClick={onClick} className="delete-card">
+              Delete Card
             </button>
-          ) : (
-            ""
-          )}
+          ) : null}
         </div>
       </div>
     </div>

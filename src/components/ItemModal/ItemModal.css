@@ -1,62 +1,42 @@
-.modal__image {
-  width: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  height: 498px;
+.modal__contents {
+  background-color: white;
+  position: relative;
+  width: 496px;
+  max-height: 610px;
+  box-sizing: border-box;
+  border-radius: 15px;
 }
 
-.modal__close {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  right: 24px;
-  top: 24px;
-  cursor: pointer;
-  background-position: center;
-  background-repeat: no-repeat;
+.modal__delete {
   border: none;
-  background-color: transparent;
+  display: flex;
+}
+
+.modal__image {
+  height: 498px;
+  width: 498px;
 }
 
 .modal__footer {
   display: flex;
-  padding: 0 32px;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 20px;
+  width: 100%;
+  row-gap: 12px;
 }
 
-.modal__caption {
-  margin: 0;
+.delete-card {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 20px;
-  font-weight: 700;
   line-height: 24px;
-  margin-bottom: 12px;
+  top: 25%;
+  left: 75%;
+  margin-left: auto;
+  border: none;
+  background-color: transparent;
+  padding-right: 28px;
+  color: red;
 }
 
-.modal__weather {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-  margin-bottom: 32px;
-}
-
-.modal__delete-btn {
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-  text-align: left;
-  color: #ff4d00;
-  border: 0;
-  background-color: #fff;
-  cursor: pointer;
-  padding: 0;
-}
-
-.modal__delete-btn_hidden {
-  visibility: hidden;
+.delete-card:hover {
+  opacity: 0.6;
 }

@@ -1,70 +1,73 @@
-import "./Header.css";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
-import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.png";
-import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import React from "react";
 import { Link } from "react-router-dom";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import "./Header.css";
+import headerLogo from "../../assets/logo.svg";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 import { useContext } from "react";
 
-function Header({
-  handleAddClick,
+const Header = ({
   weatherData,
-  isLoggedIn,
-  handleLoginClick,
-  handleSignUpClick,
-}) {
+  handleRegisterModal,
+  handleLoginModal,
+  onAddButtonClick,
+}) => {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <header className="header">
-      <div className="header__logo-and-date">
+      <div className="header__user-container-left">
         <Link to="/">
-          <img className="header__logo" alt="logo" src={logo} />
+          <img className="header__logo" alt="WTWR Logo" src={headerLogo} />
         </Link>
         <p className="header__date-and-location">
           {currentDate}, {weatherData.city}
         </p>
       </div>
-      <div className="header__switch-and-user">
+      <div className="header__user-container-right">
         <ToggleSwitch />
-        <button
-          onClick={handleAddClick}
-          type="button"
-          className={`header__button ${
-            !isLoggedIn ? "header__button_hidden" : ""
-          }`}
-        >
-          + Add clothes
-        </button>
-        {isLoggedIn ? (
-          <Link to="/profile" className="header__link">
-            <div className="header__user-container">
-              <p className="header__username">{currentUser.name}</p>
-              <img
-                src={currentUser.avatar}
-                alt={currentUser.name}
-                className="header__avatar"
-              />
-            </div>
-          </Link>
-        ) : (
-          <div className="header__buttons-container">
+        {currentUser ? (
+          <div className="header__profile_loggedIn">
             <button
-              className="header__signup-button"
-              type="button"
-              onClick={handleSignUpClick}
+              className="header__add-clothing-button"
+              onClick={onAddButtonClick}
+            >
+              + Add clothes
+            </button>
+            <Link to="/profile" className="profile__link">
+              <div className="header__profile-container">
+                <p className="header__profile-name">{currentUser.name}</p>
+                {currentUser.avatar ? (
+                  <img
+                    src={currentUser.avatar}
+                    alt={`${currentUser.name}'s avatar`}
+                    className="header__profile-avatar"
+                  />
+                ) : (
+                  <div className="header__profile-avatar_placeholder">
+                    <p className="header__profile-avatar_placeholder-initial">
+                      {currentUser.name}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </Link>
+          </div>
+        ) : (
+          <div className="header__profile_loggedOut">
+            <button
+              className="header__sign-up-button"
+              onClick={handleRegisterModal}
             >
               Sign Up
             </button>
             <button
-              className="header__login-button"
-              type="button"
-              onClick={handleLoginClick}
+              className="header__log-in-button"
+              onClick={handleLoginModal}
             >
               Log In
             </button>
@@ -73,6 +76,6 @@ function Header({
       </div>
     </header>
   );
-}
+};
 
 export default Header;

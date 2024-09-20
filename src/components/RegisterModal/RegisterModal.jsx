@@ -1,103 +1,130 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useState, useEffect } from "react";
+import LoginModal from "../LoginModal/LoginModal";
 
-const Register = ({ isOpen, handleRegistration, onClose, navigateToLogin }) => {
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    avatar: "",
-  });
+const RegisterModal = ({ onSignUp, isOpen, onClose, handleLoginModal }) => {
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [avatar, setAvatarUrl] = useState("");
 
-  if (!isOpen) {
-    return null;
+  useEffect(() => {
+    if (isOpen === true) {
+      setUserEmail("");
+      setUserPassword("");
+      setUserName("");
+      setAvatarUrl("");
+    }
+  }, [isOpen]);
+
+  const handleEmailChange = (event) => {
+    setUserEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setUserPassword(event.target.value);
+  };
+
+  const handleNameChange = (event) => {
+    setUserName(event.target.value);
+  };
+
+  const handleAvatarUrlChange = (event) => {
+    setAvatarUrl(event.target.value);
+  };
+
+  const newUser = {
+    email: userEmail,
+    password: userPassword,
+    name: userName,
+    avatar: avatar,
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    onSignUp(newUser);
   }
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleRegistration(data);
-  };
 
   return (
     <ModalWithForm
       title="Sign Up"
-      buttonText="Sign Up"
+      name="register-user"
+      buttonText="Submit"
+      onClose={onClose}
       onSubmit={handleSubmit}
       isOpen={isOpen}
-      onClose={onClose}
     >
-      <label htmlFor="email" className="modal__label">
-        Email*
-        <input
-          type="email"
-          className="modal__input"
-          id="email"
-          placeholder="Email"
-          name="email"
-          value={data.email}
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="password" className="modal__label">
-        Password*
-        <input
-          type="text"
-          className="modal__input"
-          id="password"
-          placeholder="Password"
-          name="password"
-          value={data.password}
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="name" className="modal__label">
-        Name*
-        <input
-          type="text"
-          className="modal__input"
-          id="name"
-          placeholder="Name"
-          name="name"
-          value={data.name}
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="avatar" className="modal__label">
-        Avatar URL*{" "}
-        <input
-          type="link"
-          className="modal__input"
-          id="avatar"
-          placeholder="Avatar URL"
-          name="avatar"
-          value={data.avatar}
-          onChange={handleChange}
-        />
-      </label>
-      <div className="register__button-container">
-        <button type="submit" className="register__link">
-          Sign up
+      <fieldset className="modal__inputs">
+        <label className="modal__label">
+          Email*
+          <input
+            className="modal__input"
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={userEmail}
+            minLength="1"
+            maxLength="50"
+            onChange={handleEmailChange}
+          />
+        </label>
+        <label className="modal__label">
+          Password*
+          <input
+            className="modal__input"
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={userPassword}
+            minLength="1"
+            maxLength="1000"
+            onChange={handlePasswordChange}
+          />
+        </label>
+        <label className="modal__label">
+          Name*
+          <input
+            className="modal__input"
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={userName}
+            minLength="1"
+            maxLength="30"
+            onChange={handleNameChange}
+          />
+        </label>
+        <label className="modal__label">
+          Avatar URL*
+          <input
+            className="modal__input"
+            type="url"
+            name="link"
+            placeholder="Avatar URL"
+            value={avatar}
+            minLength="1"
+            maxLength="1000"
+            onChange={handleAvatarUrlChange}
+          />
+        </label>
+      </fieldset>
+      <div className="modal__button-container">
+        <button type="submit" className="modal__submit" onSubmit={handleSubmit}>
+          {" "}
+          submit
         </button>
         <button
-          to="login"
-          className="register__login-link"
-          onClick={navigateToLogin}
+          type="button"
+          className="modal__login"
+          onClick={handleLoginModal}
         >
-          Or Log in
+          {" "}
+          or Login
         </button>
       </div>
     </ModalWithForm>
   );
 };
 
-export default Register;
+export default RegisterModal;

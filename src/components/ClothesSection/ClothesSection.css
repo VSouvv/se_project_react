@@ -1,11 +1,31 @@
-.clothes-section__items {
+.clothes-section {
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
+}
+
+.clothes-header {
+  display: flex;
+  flex-direction: row;
   gap: 10px;
 }
 
-.clothes-btn {
-  height: 25px;
-  color: #00000099;
+.clothes-section__list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.clothes-button {
   border: none;
+  opacity: 70%;
+  font-family: "Cabinet Grotesk";
+}
+
+.clothes-items {
+  margin: 0 0 0 40px;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.8px;
+  text-align: left;
 }

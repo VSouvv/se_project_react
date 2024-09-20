@@ -1,51 +1,56 @@
 .card {
   width: 323px;
+  border-radius: 15px;
+  border-color: grey;
   position: relative;
   display: flex;
   justify-content: center;
-  cursor: pointer;
+  width: 328px;
+  height: 328px;
+  gap: 0px;
+  opacity: 0px;
+  border: 1px solid #0000004d;
 }
 
 .card__name {
-  color: rgba(0, 0, 0, 0.6);
+  font-family: "Cabinet Grotesk";
   font-size: 16px;
-  font-weight: 700;
   line-height: 20px;
+  text-align: left;
+  font-weight: 700;
+  background-color: #fff;
+  width: Hug (73px) px;
+  height: Hug (24px) px;
   padding: 2px 12px 2px 12px;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 1);
+  gap: 8px;
+  border-radius: 4px 0px 0px 0px;
+  opacity: 0px;
 }
 
 .card__image {
   width: 100%;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  height: 328px;
-  object-fit: cover;
-}
-
-.card__info {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  padding: 0;
-  border-radius: 10px;
-  gap: 10px;
+  border-radius: 15px;
 }
 
 .card__like-button {
-  background-image: url("../../assets/like-button.svg");
-  width: 23px;
-  height: 20px;
-  border: none;
+  background-image: url(../../assets/unliked.svg);
   background-repeat: no-repeat;
-  cursor: pointer;
+  border: none;
+  width: 18px;
+  height: 15px;
   background-color: transparent;
+  background-size: contain;
+  background-position: center;
+}
+
+.card__title-container {
+  position: absolute;
+  top: 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .card__like-button_active {
-  background-image: url("../../assets/like-button_active.svg");
+  background-image: url(../../assets/liked.svg);
 }

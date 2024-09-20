@@ -1,74 +1,78 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const Login = ({ handleLogin, isOpen, onClose, navigateToSignUp }) => {
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
+const LoginModal = ({ onLogin, isOpen, onClose, buttonText }) => {
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  useEffect(() => {
+    if (isOpen === true) {
+      setUserEmail("");
+      setUserPassword("");
+    }
+  }, [isOpen]);
+
+  const handleEmailChange = (event) => {
+    setUserEmail(event.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleLogin(data);
+  const handlePasswordChange = (event) => {
+    setUserPassword(event.target.value);
   };
+
+  const user = {
+    email: userEmail,
+    password: userPassword,
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    onLogin(user);
+  }
 
   return (
     <ModalWithForm
       title="Log In"
+      name="register-user"
+      onClose={onClose}
       onSubmit={handleSubmit}
       isOpen={isOpen}
-      onClose={onClose}
+      buttonText="Submit"
     >
-      <label htmlFor="email" className="modal__label">
-        Email*{" "}
-        <input
-          type="email"
-          className="modal__input"
-          id="email"
-          required
-          placeholder="Email"
-          name="email"
-          value={data.email}
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="password" className="modal__label">
-        Password*{" "}
-        <input
-          type="text"
-          className="modal__input"
-          id="password"
-          required
-          placeholder="Password"
-          name="password"
-          value={data.password}
-          onChange={handleChange}
-        />
-      </label>
-      <div className="login__button-container">
-        <button type="submit" className="register__link">
-          Login In
-        </button>
-        <button
-          to="login"
-          className="login__login-link"
-          onClick={navigateToSignUp}
-        >
-          Or Sign Up
-        </button>
-      </div>
+      <fieldset className="modal__inputs">
+        <label className="modal__label">
+          Email*
+          <input
+            className="modal__input"
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={userEmail}
+            minLength="1"
+            maxLength="50"
+            onChange={handleEmailChange}
+          />
+        </label>
+        <label className="modal__label">
+          Password*
+          <input
+            className="modal__input"
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={userPassword}
+            minLength="1"
+            maxLength="1000"
+            onChange={handlePasswordChange}
+          />
+        </label>
+      </fieldset>
+      <button type="submit" className="modal__submit">
+        submit
+      </button>
     </ModalWithForm>
   );
 };
-
-export default Login;
+export default LoginModal;

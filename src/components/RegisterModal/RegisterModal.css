@@ -1,36 +1,38 @@
-.register__button-container {
+.modal__inputs {
+  border: none;
+}
+
+.modal__submit {
+  width: 124px;
+  height: 36px;
+  top: 557px;
+  left: 500px;
+  gap: 12px;
+  opacity: 0px;
+  background-color: rgb(172, 171, 171);
+  border: none;
+  font-family: "Cabinet Grotesk";
+  color: white;
+  border-radius: 5px;
   display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  gap: 2px;
-  margin-top: 8px;
 }
 
-.register__link {
+.modal__login {
+  width: fit-content;
+  align-self: center;
+  background-color: transparent;
   border: none;
-  width: 73px;
-  height: 36px;
-  margin: 0;
+  margin: 0 0 24px 0;
   padding: 0;
-  font-size: 16px;
+  color: #ff4d00;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
+  font-size: 20px;
   cursor: pointer;
+  display: flex;
 }
 
-.register__login-link {
-  border: none;
-  width: 73px;
-  height: 36px;
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  font-weight: 700;
-  text-decoration: none;
-  color: rgba(0, 0, 0, 0.3);
-  background-color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
+.modal__button-container {
+  justify-content: space-between;
+  display: flex;
 }

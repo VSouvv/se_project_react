@@ -1,35 +1,33 @@
-import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
+import Sidebar from "../Sidebar/Sidebar";
 import "./Profile.css";
 
-const Profile = ({
-  handleCardClick,
-  weatherData,
-  handleAddClick,
+function Profile({
+  onCardClick,
+  onAddButtonClick,
   clothingItems,
-  handleEditProfileClick,
-  handleSignOut,
-  onCardLike,
-}) => {
+  onEditProfileModal,
+  onSignout,
+  onItemLike,
+}) {
   return (
-    <div className="profile">
+    <div className="Profile">
       <section className="profile__sidebar">
-        <SideBar
-          handleEditProfileClick={handleEditProfileClick}
-          handleSignOut={handleSignOut}
+        <Sidebar
+          onEditProfileModal={onEditProfileModal}
+          onSignout={onSignout}
         />
       </section>
-      <section className="profile__clothing-items">
+      <section className="profile__clothes">
         <ClothesSection
-          weatherData={weatherData}
-          handleCardClick={handleCardClick}
-          handleAddClick={handleAddClick}
+          onCardClick={onCardClick}
+          onAddButtonClick={onAddButtonClick}
           clothingItems={clothingItems}
-          onCardLike={onCardLike}
+          onItemLike={onItemLike}
         />
       </section>
     </div>
   );
-};
+}
 
 export default Profile;
