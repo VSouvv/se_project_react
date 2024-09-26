@@ -53,11 +53,13 @@ function App() {
     setActiveModal("");
   };
 
-  const handleLoginModal = () => {
+  const handleLoginModal = (e) => {
+    e.preventDefault();
     setActiveModal("login");
   };
 
-  const handleRegisterModal = () => {
+  const handleRegisterModal = (e) => {
+    e.preventDefault();
     setActiveModal("register");
   };
 
@@ -278,6 +280,7 @@ function App() {
                     clothingItems={clothingItems}
                     onClose={closeActiveModal}
                     handleCardDelete={handleCardDelete}
+                    onItemLike={handleLikeItem}
                   />
                 }
               />
@@ -332,6 +335,7 @@ function App() {
             onSubmit={handleLogin}
             isOpen={activeModal === "login"}
             onLogin={handleLogin}
+            handleRegisterModal={handleRegisterModal}
           />
           <EditProfileModal
             onClose={closeActiveModal}

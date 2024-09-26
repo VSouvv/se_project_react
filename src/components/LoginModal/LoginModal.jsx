@@ -3,7 +3,13 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const LoginModal = ({ onLogin, isOpen, onClose, buttonText }) => {
+const LoginModal = ({
+  onLogin,
+  isOpen,
+  onClose,
+  buttonText,
+  handleRegisterModal,
+}) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
@@ -69,9 +75,22 @@ const LoginModal = ({ onLogin, isOpen, onClose, buttonText }) => {
           />
         </label>
       </fieldset>
-      <button type="submit" className="modal__submit">
-        submit
-      </button>
+      <div className="modal__button-container">
+        <button
+          type="submit"
+          className="modal__login_submit"
+          onSubmit={handleSubmit}
+        >
+          Log in
+        </button>
+        <button
+          type="submit"
+          className="modal__sign-up_submit"
+          onClick={handleRegisterModal}
+        >
+          Sign Up
+        </button>
+      </div>
     </ModalWithForm>
   );
 };

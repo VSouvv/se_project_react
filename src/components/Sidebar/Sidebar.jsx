@@ -5,7 +5,6 @@ import { CurrentUserContext } from "../../context/CurrentUserContext";
 
 const SideBar = ({ onEditProfileModal, onSignout }) => {
   const { currentUser } = useContext(CurrentUserContext);
-
   return (
     <div className="sidebar">
       {currentUser ? (
@@ -20,7 +19,7 @@ const SideBar = ({ onEditProfileModal, onSignout }) => {
       ) : (
         <div className="side-bar__profile-avatar_placeholder" alt="User avatar">
           <p className="side-bar__profile-avatar_placeholder-initial">
-            {/* Fallback logic can be improved */}
+            {/* Fallback logic can be improved depending on your requirements */}
             {/* {currentUser ? currentUser.name.charAt(0).toUpperCase() : "U"} */}
             U
           </p>

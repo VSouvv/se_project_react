@@ -112,7 +112,7 @@ const RegisterModal = ({ onSignUp, isOpen, onClose, handleLoginModal }) => {
       <div className="modal__button-container">
         <button type="submit" className="modal__submit" onSubmit={handleSubmit}>
           {" "}
-          submit
+          Sign Up{" "}
         </button>
         <button
           type="button"

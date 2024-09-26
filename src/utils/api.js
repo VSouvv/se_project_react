@@ -19,7 +19,7 @@ function addItems({ name, imageUrl, weather, token }) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`, // TODOL add token to arg
     },
     body: JSON.stringify({
       name,

@@ -1,3 +1,40 @@
 .modal__inputs {
   border: none;
 }
+
+.modal__button-container {
+  display: flex;
+}
+
+.modal__sign-up_submit {
+  width: fit-content;
+  align-self: center;
+  background-color: transparent;
+  border: none;
+  margin: 0 0 24px 0;
+  padding: 0;
+  color: grey;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+}
+
+.modal__login_submit {
+  width: 124px;
+  height: 36px;
+  top: 557px;
+  left: 500px;
+  gap: 12px;
+  opacity: 0px;
+  background-color: rgb(172, 171, 171);
+  border: none;
+  font-family: "Cabinet Grotesk";
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  font-weight: 700;
+  size: 16px;
+  margin: 20px;
+}

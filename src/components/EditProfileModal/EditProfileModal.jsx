@@ -75,7 +75,7 @@ const EditProfileModal = ({ onSubmit, isOpen, onClose, buttonText }) => {
         </label>
       </fieldset>
       <button type="submit" className="modal__submit">
-        submit
+        Save Changes
       </button>
     </ModalWithForm>
   );

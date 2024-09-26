@@ -1,8 +1,6 @@
-export const BASE_URL = "http://localhost:3001";
+import { handleServerResponse } from "./api";
 
-export const handleServerResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-};
+export const BASE_URL = "http://localhost:3001";
 
 export const signUp = (newUser) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -22,7 +20,6 @@ export const signIn = (email, password) => {
       Accept: "application/json",
       "Content-type": "application/json",
     },
-
     body: JSON.stringify({ email, password }),
   }).then(handleServerResponse);
 };
