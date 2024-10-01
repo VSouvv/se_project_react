@@ -1,29 +1,45 @@
-import { useContext } from "react";
 import "./ItemCard.css";
-import { CurrentUserContext } from "../../context/CurrentUserContext";
+import likeButton from "../../assets/likebtn.svg";
+import isLikedButton from "../../assets/islikedbtn.svg";
+import { useContext, useEffect, useState } from "react";
+import CurrentUserContext from "../../context/CurrentUserContext";
+function ItemCard({ item, onCardClick, onCardLike, isLoggedIn = false }) {
+  const currentUser = useContext(CurrentUserContext);
+  const [isLiked, setIsLiked] = useState(false);
 
-function ItemCard({ item, onCardClick, onItemLike }) {
-  const { currentUser, isAuthenticated } = useContext(CurrentUserContext);
-  const isLiked = item.likes.some((userId) => {
-    return currentUser?._id === userId;
-  });
+  useEffect(() => {
+    const isLiked = item.likes.some((id) => id === currentUser._id);
+
+    {
+      isLiked ? setIsLiked(true) : setIsLiked(false);
+    }
+  }, [item.likes, currentUser._id]);
+
+  const handleCardClick = () => {
+    onCardClick(item);
+  };
+  const handleLike = () => {
+    setIsLiked(!isLiked);
+    onCardLike(item, isLiked);
+  };
+
   return (
     <li className="card">
-      <div className="card__title-container">
-        <h2 className="card__name">{item.name} </h2>
-        {isAuthenticated && (
-          <button
-            className={`card__like-button ${
-              isLiked ? "card__like-button_active" : ""
-            }`}
-            onClick={() => onItemLike({ itemId: item._id, isLiked: isLiked })}
-          ></button>
+      <div className="card__overlay">
+        <h2 className="card__name">{item.name}</h2>
+        {isLoggedIn && (
+          <img
+            className={"card__like-btn"}
+            type="button"
+            onClick={handleLike}
+            src={isLiked ? isLikedButton : likeButton}
+            alt="Like button"
+          />
         )}
       </div>
+
       <img
-        onClick={() => {
-          onCardClick(item);
-        }}
+        onClick={handleCardClick}
         className="card__image"
         src={item.imageUrl}
         alt={item.name}

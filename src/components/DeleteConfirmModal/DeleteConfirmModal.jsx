@@ -1,38 +1,36 @@
-import "./DeleteConfirmModal.css";
+import React from "react";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function DeleteConfirmModal({
+const DeleteConfirmModal = ({
   activeModal,
   closeActiveModal,
-  handleCardDelete,
-  isOpen,
-}) {
+  onDeleteItem,
+  handleDeleteConfirmModal,
+}) => {
   return (
-    <div className={`modal ${isOpen && "modal_opened"}`}>
-      <div className="modal__content modal_content_type_delete">
+    <div
+      className={`modal ${
+        activeModal === "delete-confirmation" && "modal_opened"
+      }`}
+    >
+      <div className="modal__content modal__content_type_delete">
         <button
           onClick={closeActiveModal}
-          className="modal__close"
+          className="modal__close modal__close_type_grey"
           type="button"
         ></button>
-        <p className="modal__heading-delete">
-          Are you sure, you want to delete this item?
-        </p>
+
         <button
-          onClick={handleCardDelete}
-          className="modal__delete-confirm"
-          type="submit"
+          className={modalDeleteButtonClassName}
+          onClick={(e) => onDeleteItem(card._id)}
+          type="button"
         >
           Yes, delete item
         </button>
-        <button
-          onClick={closeActiveModal}
-          type="submit"
-          className="modal__delete-cancel"
-        >
-          Cancel
-        </button>
+        <button className="modal__cancel-btn">Cancel</button>
       </div>
     </div>
   );
-}
+};
+
 export default DeleteConfirmModal;

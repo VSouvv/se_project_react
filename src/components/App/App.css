@@ -1,11 +1,13 @@
 .page {
-  color: black;
   background-color: #f3f3f3;
-  font-family: "Cabinet Grotesk";
 }
+
 .page__content {
   max-width: 1360px;
-  max-height: 700px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f3f3f3;
 }

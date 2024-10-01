@@ -1,13 +1,12 @@
 @font-face {
-  src: url("../../fonts/CabinetGrotesk-Regular.woff");
   font-family: "Cabinet Grotesk";
+  src: url("../../assets/fonts/CabinetGrotesk-Medium.otf") format("opentype");
 }
-
 .modal {
   position: fixed;
   top: 0;
-  right: 0;
   left: 0;
+  right: 0;
   bottom: 0;
   background-color: #0000004d;
   display: flex;
@@ -15,120 +14,124 @@
   align-items: center;
   visibility: hidden;
 }
-
 .modal_opened {
   visibility: visible;
 }
+.modal__content {
+  background-color: #fff;
+  position: relative;
 
-.modal__close {
-  position: absolute;
-  top: 20px;
-  right: 28px;
-}
+  max-width: 496px;
+  box-sizing: border-box;
 
-.modal__title {
-  padding-bottom: 30px;
-  margin: 0;
+  width: 496px;
   font-family: "Cabinet Grotesk";
   font-size: 16px;
-  font-weight: 700;
   line-height: 20px;
-  text-align: left;
-}
-
-.modal__content {
-  background-color: white;
-  position: relative;
-  padding: 28px;
-  width: 496px;
-  max-height: 610px;
-  box-sizing: border-box;
-  border-radius: 15px;
-}
-
-.modal__image {
-  border-radius: 15px 15px 0 0;
-  width: 100%;
-}
-
-.modal__caption {
-  font-family: "Cabinet Grotesk";
-  font-size: 20px;
   font-weight: 700;
-  line-height: 24px;
-  text-align: left;
-  padding: 0 28px;
-  margin: 28px 0 0 0;
+  padding: 28px 28px 36px 28px;
 }
-
-.modal__weather {
-  padding: 0 28px 28px;
+.modal__content_type_addgarment {
+  padding: 28px 28px 36px 28px;
+}
+.modal__title {
   margin: 0;
-  font-family: "Cabinet Grotesk";
-  font-size: 20px;
+  font-size: 16px;
+  line-height: 20px;
   font-weight: 700;
-  line-height: 24px;
-  text-align: left;
 }
+.modal__close {
+  position: absolute;
+  right: 28px;
+  top: 20px;
 
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+}
+.modal__close_type_grey {
+  background-image: url(../../assets/closebtn-addgarment.svg);
+}
 .modal__form {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
-
-.modal__label {
-  font-family: "Cabinet Grotesk";
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 20px;
-  text-align: left;
-  padding-bottom: 10px;
+.modal__input_type_name {
+  margin-top: 24px;
 }
-
+.modal__input_type_email {
+  padding-top: 24px;
+}
+.modal__input_type_image {
+  margin-top: 24px;
+}
+.modal__input_type_password {
+  padding-top: 24px;
+}
+.modal__input_type_avatarurl {
+  padding-top: 24px;
+}
 .modal__input {
   display: block;
-  width: 100%;
-  margin-bottom: 15px;
   border: none;
   border-bottom: 1px solid black;
   margin-top: 8px;
+  width: 440px;
 }
-
 .modal__radio-buttons {
-  border: none;
-  padding: 0 0 10px 0;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
-}
+  border: none;
+  padding: 0;
+  gap: 8px;
 
+  margin-top: 24px;
+}
+.modal__label_type_radio {
+  accent-color: black;
+}
 .modal__legend {
-  margin-bottom: 8px;
+  margin-bottom: 17px;
 }
-
-.modal__close {
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: contain;
-  cursor: pointer;
-  position: absolute;
-  border: none;
-  width: 20px;
-  height: 20px;
-  background-image: url(../../assets/Close-Icon.png);
+.modal__buttons-wrapper {
+  /* display: flex;
+  align-items: center; */
 }
-
 .modal__submit {
-  width: 124px;
-  height: 36px;
-  top: 557px;
-  left: 500px;
-  gap: 12px;
-  opacity: 0px;
-  background-color: rgb(172, 171, 171);
   border: none;
+  background: #0000004d;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 36px;
+  padding: 8px 16px;
+
+  border: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
   font-family: "Cabinet Grotesk";
-  color: white;
-  border-radius: 5px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  margin-top: 40px;
+}
+.modal__delete-button {
+  cursor: pointer;
+}
+.modal__or-signup-btn {
+  border: none;
+  background: transparent;
+  color: #00000080;
+  cursor: pointer;
+}
+.modal__or-login-btn {
+  border: none;
+  background: transparent;
+  color: #00000080;
+  cursor: pointer;
 }

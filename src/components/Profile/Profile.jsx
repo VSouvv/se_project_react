@@ -1,33 +1,39 @@
-import ClothesSection from "../ClothesSection/ClothesSection";
+import React from "react";
 import Sidebar from "../Sidebar/Sidebar";
+import ClothesSection from "../ClothesSection/ClothesSection";
 import "./Profile.css";
+import Avatar from "../Avatar/Avatar";
 
-function Profile({
+const Profile = ({
+  handleAddClick,
   onCardClick,
-  onAddButtonClick,
   clothingItems,
-  onEditProfileModal,
-  onSignout,
-  onItemLike,
-}) {
+  selectedCard,
+  handleEditProfileModal,
+  onCardLike = { onCardLike },
+  handleLogOutClick,
+  isLoggedIn,
+}) => {
   return (
-    <div className="Profile">
+    <div className="profile">
       <section className="profile__sidebar">
         <Sidebar
-          onEditProfileModal={onEditProfileModal}
-          onSignout={onSignout}
+          handleEditProfileModal={handleEditProfileModal}
+          handleLogOutClick={handleLogOutClick}
         />
       </section>
-      <section className="profile__clothes">
+      <section className="profile__clothing-its">
         <ClothesSection
+          handleAddClick={handleAddClick}
           onCardClick={onCardClick}
-          onAddButtonClick={onAddButtonClick}
           clothingItems={clothingItems}
-          onItemLike={onItemLike}
+          selectedCard={selectedCard}
+          onCardLike={onCardLike}
+          isLoggedIn={isLoggedIn}
         />
       </section>
     </div>
   );
-}
+};
 
 export default Profile;

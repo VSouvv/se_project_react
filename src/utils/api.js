@@ -1,105 +1,73 @@
 const baseUrl = "http://localhost:3001";
 
-export const handleServerResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-};
-
-//Get items
-function getItems() {
-  return fetch(`${baseUrl}/items`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(handleServerResponse);
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error: ${res.status}`);
 }
 
-//Add items
-function addItems({ name, imageUrl, weather, token }) {
-  return fetch(`${baseUrl}/items`, {
+function request(url, options) {
+  return fetch(url, options).then(checkResponse);
+}
+
+function getItems() {
+  return request(`${baseUrl}/items`);
+}
+
+function createCard({ name, imageUrl, weather, token }) {
+  return request(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // TODOL add token to arg
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name,
-      weather,
       imageUrl,
+      weather,
     }),
-  }).then(handleServerResponse);
+  });
 }
 
-//Remove items
-function removeItems(id, token) {
-  return fetch(`${baseUrl}/items/${id}`, {
+function deleteCard(cardId, token) {
+  return request(`${baseUrl}/items/${cardId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     },
-  }).then(handleServerResponse);
+  });
 }
 
-// Edit user profile
-function editUserProfile({ name, avatar, token }) {
-  if (!name || !avatar || !token) {
-    throw new Error("Missing required parameters: name, avatar, or token.");
-  }
-
-  return fetch(`${baseUrl}/users/me`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      name: name,
-      avatar: avatar,
-    }),
-  })
-    .then(handleServerResponse)
-    .then((data) => {
-      return data;
-    });
-}
-
-// Like item
-function addLikeItem({ itemId, token }) {
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+function likeCard(itemId, token) {
+  return request(`${baseUrl}/items/${itemId}/likes/`, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
-  })
-    .then(handleServerResponse)
-    .then((data) => {
-      return data;
-    });
+    body: JSON.stringify({ token }),
+  });
 }
 
-// Dislike Item
-function removeLikeItem({ itemId, token }) {
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+function unlikeCard(itemId, token) {
+  return request(`${baseUrl}/items/${itemId}/likes/`, {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
-  })
-    .then(handleServerResponse)
-    .then((data) => {
-      return data;
-    });
+  });
 }
 
-const api = {
+export {
   getItems,
-  addItems,
-  removeItems,
-  editUserProfile,
-  addLikeItem,
-  removeLikeItem,
+  createCard,
+  deleteCard,
+  likeCard,
+  request,
+  checkResponse,
+  baseUrl,
+  unlikeCard,
 };
-
-export default api;

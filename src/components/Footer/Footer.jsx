@@ -1,12 +1,10 @@
 import "./Footer.css";
-
-export default function Footer() {
+function Footer() {
   return (
     <footer className="footer">
-      <p className="footer__developed_by">Developed by Vista Souvandy</p>
-      <div className="footer__user-container">
-        <p className="footer__year">2024</p>
-      </div>
+      <p className="footer__copyright-name">Developed by Vista Souvandy</p>
+      <p className="footer__copyright-year">2024</p>
     </footer>
   );
 }
+export default Footer;

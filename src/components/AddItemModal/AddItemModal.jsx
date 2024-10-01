@@ -1,24 +1,16 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import App from "../App/App";
 
-const AddItemModal = ({
-  activeModal,
-  closeActiveModal,
-  handleAddItemSubmit,
-}) => {
+const AddItemModal = ({ activeModal, onAddItem, closeActiveModal }) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
 
-  const [imageUrl, setUrl] = useState("");
-  const handleUrlChange = (e) => {
-    console.log(e.target.value);
-    setUrl(e.target.value);
+  const [imageUrl, setImageUrl] = useState("");
+  const handleImageUrlChange = (e) => {
+    setImageUrl(e.target.value);
   };
-
   const [weather, setWeather] = useState("");
   const handleWeatherChange = (e) => {
     console.log(e.target.value);
@@ -27,37 +19,43 @@ const AddItemModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleAddItemSubmit({ name, imageUrl, weather });
+
+    onAddItem({ name, imageUrl, weather });
   };
 
   return (
     <ModalWithForm
-      title="New Garment"
+      titleText="New garment"
       buttonText="Add garment"
-      isOpen={activeModal === "add-garment"}
+      activeModal={activeModal}
       onClose={closeActiveModal}
+      isOpen={activeModal === "add-garment"}
+      name={"addgarment"}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
-        Name {""}
+      <label htmlFor="additemmodal-name" className="modal__input_type_name">
+        Name{" "}
         <input
           type="text"
           className="modal__input"
-          id="name"
-          placeholder="name"
+          id="additemmodal-name"
+          placeholder="Name"
           value={name}
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="imageUrl" className="modal__label">
-        Image {""}
+      <label
+        htmlFor="additemmodal-imageUrl"
+        className="modal__input_type_image"
+      >
+        Image{" "}
         <input
-          type="Url"
+          type="url"
           className="modal__input"
-          id="imageUrl"
+          id="additemmodal-imageUrl"
           placeholder="Image URL"
           value={imageUrl}
-          onChange={handleUrlChange}
+          onChange={handleImageUrlChange}
         />
       </label>
       <fieldset className="modal__radio-buttons">
@@ -66,8 +64,8 @@ const AddItemModal = ({
           <input
             id="hot"
             type="radio"
+            name="radio-weather"
             className="modal__radio-input"
-            name="radio"
             value="hot"
             onChange={handleWeatherChange}
           />{" "}
@@ -77,8 +75,8 @@ const AddItemModal = ({
           <input
             id="warm"
             type="radio"
+            name="radio-weather"
             className="modal__radio-input"
-            name="radio"
             value="warm"
             onChange={handleWeatherChange}
           />{" "}
@@ -88,8 +86,8 @@ const AddItemModal = ({
           <input
             id="cold"
             type="radio"
+            name="radio-weather"
             className="modal__radio-input"
-            name="radio"
             value="cold"
             onChange={handleWeatherChange}
           />{" "}

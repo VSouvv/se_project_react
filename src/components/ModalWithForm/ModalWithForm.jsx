@@ -1,29 +1,34 @@
 import "./ModalWithForm.css";
-import AddItemModal from "../AddItemModal/AddItemModal";
 
 function ModalWithForm({
   children,
   buttonText,
-  title,
+  titleText,
+  activeModal,
+
   isOpen,
-  onClose,
+  name,
   onSubmit,
+  onClose,
+  closeActiveModal,
 }) {
   return (
-    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
-      <div className="modal__content">
-        <h2 className="modal__title">{title}</h2>
+    <div className={`modal ${isOpen && "modal_opened"}`}>
+      <div className={`modal__content modal__content_type_${name}`}>
+        <h2 className="modal__title">{titleText}</h2>
         <button
-          type="button"
-          className="modal__close"
           onClick={onClose}
-        ></button>
-        <form className="modal__form" onSubmit={onSubmit}>
+          className="modal__close modal__close_type_grey"
+          type="button"
+        />
+        <form className="modal__form" onSubmit={onSubmit} name={name}>
           {children}
+          {/* <button type="submit" className="modal__submit">
+            {buttonText}
+          </button> */}
         </form>
       </div>
     </div>
   );
 }
-
 export default ModalWithForm;

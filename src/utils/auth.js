@@ -1,35 +1,60 @@
-import { handleServerResponse } from "./api";
+import { baseUrl, checkResponse, request } from "./api";
 
-export const BASE_URL = "http://localhost:3001";
-
-export const signUp = (newUser) => {
-  return fetch(`${BASE_URL}/signup`, {
+//sign up
+function signUp({ name, avatarUrl: avatar, email, password }) {
+  return request(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
-      Accept: "application/json",
+      "Content-Type": "application/json", // Add Content-Type header
+    },
+    body: JSON.stringify({
+      name,
+      avatar,
+      email,
+      password,
+    }),
+  });
+}
+
+//sign in
+
+function signIn({ email, password }) {
+  return request(`${baseUrl}/signin`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Add Content-Type header
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  });
+}
+
+//edit profile
+
+function editProfile({ name, avatarUrl: avatar }, token) {
+  return request(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(newUser),
-  }).then(handleServerResponse);
-};
+    body: JSON.stringify({
+      name,
+      avatar,
+    }),
+  });
+}
 
-export const signIn = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-  }).then(handleServerResponse);
-};
-
-export const checkToken = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
+function getCurrentUser(token) {
+  return request(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     },
-  }).then(handleServerResponse);
-};
+  });
+}
+
+export { signUp, signIn, getCurrentUser, editProfile };

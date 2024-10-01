@@ -1,51 +1,58 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../../assets/fonts/CabinetGrotesk-Medium.otf") format("opentype");
+}
 .switch {
   display: flex;
+  align-items: center;
   position: relative;
+  font-family: "Cabinet Grotesk";
+  font-size: 14px;
+  line-height: 17.36px;
+  font-weight: 700;
 }
 
 .switch__box {
-  border-radius: 25px;
-  border: 2px solid black;
-  width: 55px;
-  height: 30px;
-  outline: none;
+  border-radius: 20px;
+  border: 2px solid #7e7e7e;
+  width: 56px;
+  height: 28px;
   appearance: none;
+  cursor: pointer;
 }
 
 .switch__slider {
   border-radius: 20px;
-  width: 30px;
-  height: 30px;
-  background-color: black;
-  color: white;
+  width: 28px;
+  height: 28px;
+  background-color: #000;
+  color: #fff;
   text-align: center;
   cursor: pointer;
   position: absolute;
 }
-
-.switch__active {
-  color: white;
-  font-size: 16px;
-}
-
-.switch__temp-F {
-  position: absolute;
-  top: -8px;
-  left: 35px;
-}
-
-.switch__temp-C {
-  position: absolute;
-  top: -8px;
-  left: 10px;
-}
-
 .switch__slider-F {
   top: 0px;
-  left: 23px;
+  left: 27px;
+  color: #000;
 }
-
 .switch__slider-C {
   top: 0px;
-  left: 2px;
+  left: 1px;
+  color: #000;
+}
+.switch__active {
+  color: #fff;
+}
+.switch__temp-F {
+  position: absolute;
+  top: -6px;
+  left: 39px;
+  cursor: pointer;
+}
+.switch__temp-C {
+  position: absolute;
+  top: -7px;
+  left: 11px;
+  cursor: pointer;
 }

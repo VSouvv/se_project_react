@@ -1,81 +1,76 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
-import headerLogo from "../../assets/logo.svg";
-import { CurrentUserContext } from "../../context/CurrentUserContext";
+import logo from "../../assets/logo.svg";
+import avatar from "../../assets/avatar.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
+import CurrentUserContext from "../../context/CurrentUserContext";
+import Avatar from "../Avatar/Avatar";
 
-const Header = ({
+function Header({
+  handleAddClick,
   weatherData,
-  handleRegisterModal,
   handleLoginModal,
-  onAddButtonClick,
-}) => {
+  handleRegisterModal,
+  isLoggedIn,
+}) {
+  const { name, avatar, _id } = useContext(CurrentUserContext);
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-  const { currentUser } = useContext(CurrentUserContext);
-
   return (
     <header className="header">
-      <div className="header__user-container-left">
+      <div className="header__wrapper-left">
         <Link to="/">
-          <img className="header__logo" alt="WTWR Logo" src={headerLogo} />
+          <img className="header__logo" src={logo} alt="page logo" />{" "}
         </Link>
         <p className="header__date-and-location">
           {currentDate}, {weatherData.city}
         </p>
       </div>
-      <div className="header__user-container-right">
+      <div className="header__wrapper-right">
         <ToggleSwitch />
-        {currentUser ? (
-          <div className="header__profile_loggedIn">
+
+        {isLoggedIn ? (
+          <>
             <button
-              className="header__add-clothing-button"
-              onClick={onAddButtonClick}
+              onClick={handleAddClick}
+              type="button"
+              className="header__add-clothes-button"
             >
               + Add clothes
             </button>
-            <Link to="/profile" className="profile__link">
-              <div className="header__profile-container">
-                <p className="header__profile-name">{currentUser.name}</p>
-                {currentUser.avatar ? (
-                  <img
-                    src={currentUser.avatar}
-                    alt={`${currentUser.name}'s avatar`}
-                    className="header__profile-avatar"
-                  />
-                ) : (
-                  <div className="header__profile-avatar_placeholder">
-                    <p className="header__profile-avatar_placeholder-initial">
-                      {currentUser.name}
-                    </p>
-                  </div>
-                )}
+
+            <Link to="/profile">
+              <div className="header__user-container">
+                <p className="header__username">{name}</p>
+
+                <Avatar sizeClass="avatar-small" />
               </div>
             </Link>
-          </div>
+          </>
         ) : (
-          <div className="header__profile_loggedOut">
+          <>
             <button
-              className="header__sign-up-button"
               onClick={handleRegisterModal}
+              type="button"
+              className="header_signup-button"
             >
-              Sign Up
+              Sign up
             </button>
             <button
-              className="header__log-in-button"
               onClick={handleLoginModal}
+              type="button"
+              className="header_login-button"
             >
               Log In
             </button>
-          </div>
+          </>
         )}
       </div>
     </header>
   );
-};
-
+}
 export default Header;
