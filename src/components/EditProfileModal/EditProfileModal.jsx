@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./EditProfileModal.css";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../context/CurrentUserContext";
 
 const EditProfileModal = ({ activeModal, closeActiveModal, onEditProfile }) => {
   const [name, setName] = useState("");
