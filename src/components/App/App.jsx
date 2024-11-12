@@ -140,18 +140,14 @@ function App() {
     const token = localStorage.getItem("jwt");
 
     !isLiked
-      ? 
-
-        likeCard(data._id, token)
-
+      ? likeCard(data._id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === data._id ? updatedCard : item))
             );
           })
           .catch((err) => console.log(err))
-        unlikeCard(data._id, token)
-
+      : unlikeCard(data._id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === data._id ? updatedCard : item))
@@ -159,6 +155,8 @@ function App() {
           })
           .catch((err) => console.log(err));
   };
+
+  //useEffects
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -177,12 +175,15 @@ function App() {
       .catch(console.error);
   }, []);
 
+  //checks token
   useEffect(() => {
+    //gets token from local storage
     const token = localStorage.getItem("jwt");
+
     if (!token) {
       return;
     }
-
+    //checks token
     getCurrentUser(token)
       .then((user) => {
         setIsLoggedIn(true);
