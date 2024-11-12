@@ -140,14 +140,18 @@ function App() {
     const token = localStorage.getItem("jwt");
 
     !isLiked
-      ? likeCard(data._id, token)
+      ? 
+
+        likeCard(data._id, token)
+
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === data._id ? updatedCard : item))
             );
           })
           .catch((err) => console.log(err))
-      : unlikeCard(data._id, token)
+        unlikeCard(data._id, token)
+
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === data._id ? updatedCard : item))
@@ -277,12 +281,12 @@ function App() {
             closeActiveModal={closeActiveModal}
             onEditProfile={onEditProfile}
           />
-          {/* <DeleteConfirmModal>
+          {/* <DeleteConfirmationModal>
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             onDeleteItem={onDeleteItem}
-            {/* handleDeleteConfirmModal={handleDeleteConfirmModal} */}
-          {/* </DeleteConfirmModal> */}
+            {/* handleDeleteConfirmationModal={handleDeleteConfirmationModal} */}
+          {/* </DeleteConfirmationModal> */}
         </CurrentTemperatureUnitContext.Provider>
       </div>
     </CurrentUserContext.Provider>

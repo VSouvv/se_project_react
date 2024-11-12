@@ -21,3 +21,20 @@ The idea of the application is pretty simple - we make a call to an API, which t
 - **Git:** Version control for tracking changes and collaboration.
 
 [Back End](https://github.com/VSouvv/se_project_express)
+
+## Production URL
+
+The live version of the application is available at:
+
+**Production URL**: `heeps://gcp-demo1.jumpingcrab.com`
+
+## API Configuration
+
+The front end communicates with the back end vis this base API URL:
+
+**API URL**: `https://api.gcp-demo1.jumpingcrab.com/`
+
+To set this in your environment variables, add the following line to your `.env` file in the front end:
+
+plaintext
+VITE_API_BASE_URL=https://api.gcp-demo1.jumpingcrab.com

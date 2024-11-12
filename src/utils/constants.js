@@ -111,9 +111,16 @@ export const defaultClothingItems = [
   },
 ];
 
-export const coordinates = {
+const coordinates = {
   latitude: 29.424122,
   longitude: -98.493629,
 };
 
-export const APIkey = "46d372d21a15a57419dd63bfc0fca478";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.gcp-demo1.jumpingcrab.com/"
+    : "http://localhost:3001";
+
+const APIkey = "46d372d21a15a57419dd63bfc0fca478";
+
+export { coordinates, APIkey, baseUrl };

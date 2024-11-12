@@ -1,4 +1,5 @@
-import { baseUrl, checkResponse, request } from "./api";
+import { checkResponse, request } from "./api";
+import { baseUrl } from "./constants";
 
 //sign up
 function signUp({ name, avatarUrl: avatar, email, password }) {
