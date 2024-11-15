@@ -118,7 +118,7 @@ const coordinates = {
 
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.gcp-demo1.jumpingcrab.com/"
+    ? "https://api.gcp-demo1.jumpingcrab.com"
     : "http://localhost:3001";
 
 const APIkey = "46d372d21a15a57419dd63bfc0fca478";
